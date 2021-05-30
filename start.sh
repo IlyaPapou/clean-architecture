@@ -1,0 +1,1 @@
+docker build -t clean-architecture . && docker run -dp 3000:3000 clean-architecture
