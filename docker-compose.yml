@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    # Only will build development stage from our dockerfile
+    # Mount our host Directory to the docker container
+    # Mount (.) current directory to the docker container
+    # reflect file changes from host to container
+    volumes:
+      - .:/usr/src/app
+      - ./usr/src/app/node_modules
+    # Run in dev Mode: npm run start:dev
+    command: npm run start:dev
+    environment: 
+      NODE_ENV: development
+      PORT: 3000
+    ports:
+      - 3000:3000
