@@ -9,11 +9,11 @@ export class ActivityEntity {
     private readonly _money: MoneyEntity,
   ) {}
 
-  get sourceAccount(): AccountId {
+  get sourceAccountId(): AccountId {
     return this._sourceAccountId;
   }
 
-  get targetAccount(): AccountId {
+  get targetAccountId(): AccountId {
     return this._targetAccountId;
   }
 
