@@ -6,7 +6,8 @@ import { GetAccountBalanceQuery } from './../ports/in/get-account-balance.query'
 export class GetAccountBalanceService implements GetAccountBalanceQuery {
   constructor(private readonly _loadAccountPort: LoadAccountPort) {}
 
-  getAccountBalance(accountId: AccountId): MoneyEntity {
-    return this._loadAccountPort.loadAccount(accountId).calculateBalance();
+  async getAccountBalance(accountId: AccountId): Promise<MoneyEntity> {
+    const account = await this._loadAccountPort.loadAccount(accountId);
+    return account.calculateBalance();
   }
 }
