@@ -11,14 +11,14 @@ export class AccountMapper {
     activities: ActivityOrmEntity[],
   ): AccountEntity {
     const activityWindow: ActivityWindowEntity =
-      this.mapTotActivityWindow(activities);
+      this.mapToActivityWindow(activities);
     const balance: MoneyEntity = activityWindow.calculateBalance(
       account.userId,
     );
     return new AccountEntity(account.userId, balance, activityWindow);
   }
 
-  static mapTotActivityWindow(
+  static mapToActivityWindow(
     activities: ActivityOrmEntity[],
   ): ActivityWindowEntity {
     const activityWindowEntity: ActivityWindowEntity =
@@ -35,5 +35,18 @@ export class AccountMapper {
       activityWindowEntity.addActivity(activityEntity);
     });
     return activityWindowEntity;
+  }
+
+  static mapToActivityOrmEntity(activity: ActivityEntity): ActivityOrmEntity {
+    const activityOrmEntity: ActivityOrmEntity = new ActivityOrmEntity();
+    activityOrmEntity.timestamp = activity.timestamp.getTime();
+    activityOrmEntity.ownerAccountId = activity.ownerAccountId;
+    activityOrmEntity.sourceAccountId = activity.sourceAccountId;
+    activityOrmEntity.targetAccountId = activity.targetAccountId;
+    activityOrmEntity.amount = activity.money.amount.toNumber();
+    if (activity.id !== null) {
+      activityOrmEntity.id = activity.id;
+    }
+    return activityOrmEntity;
   }
 }

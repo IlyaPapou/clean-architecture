@@ -32,4 +32,8 @@ export class ActivityEntity {
   get money(): MoneyEntity {
     return this._money;
   }
+
+  get id(): ActivityId {
+    return this._id;
+  }
 }
