@@ -56,6 +56,7 @@ module.exports = {
       }
     ],
     'curly': ['error', 'all'],
+    'no-duplicate-imports': 'error',
     'no-mixed-operators': 'error',
     'no-debugger': 'error',
     'no-console': 'error',
